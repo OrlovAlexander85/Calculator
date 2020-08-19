@@ -1,21 +1,19 @@
 package com.orlov;
 
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Stack;
 
 public class Calculations {
 
-    public double calculationResult(String postFixExpression) {
+    public double calculationResult(String postFixExpression) throws IllegalOperationException {
         String[] splitedExpression = postFixExpression.split(" ");
         Stack<Double> stackOfOperands = new Stack<>();
 
-        for (int i = 0; i < splitedExpression.length; i++) {
-            if (splitedExpression[i].matches(".*\\d.*")) {
-                stackOfOperands.push(Double.parseDouble(splitedExpression[i]));
+        for (String s : splitedExpression) {
+            if (s.matches(".*\\d.*")) {
+                stackOfOperands.push(Double.parseDouble(s));
             } else {
                 double d;
-                switch (splitedExpression[i]) {
+                switch (s) {
                     case "+":
                         d = addition(stackOfOperands.pop(), stackOfOperands.pop());
                         stackOfOperands.push(d);
@@ -46,7 +44,10 @@ public class Calculations {
         return d2 - d1;
     }
 
-    private double division(double d1, double d2) {
+    private double division(double d1, double d2) throws IllegalOperationException {
+        if (d1 == 0) {
+            throw new IllegalOperationException("Division by 0 is forbidden");
+        }
         return d2 / d1;
     }
 

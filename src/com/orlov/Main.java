@@ -4,6 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 //        "4.2 + 2 * 3 / 3 - 6.1"
-        new Calculator().calculate();
+        try {
+            new Calculator().calculate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

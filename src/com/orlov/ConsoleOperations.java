@@ -11,4 +11,7 @@ public class ConsoleOperations {
         scanner.close();
         return userExpression;
     }
+    public void showTheAnswer(double answer){
+        System.out.println("The answer is: " + answer);
+    }
 }
