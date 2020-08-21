@@ -20,7 +20,7 @@ public class Parsing {
                     throw new IncorrectInputException("Two operators in a row are not allowed");
                 }
                 postFixExpression.append(' ');
-                while (!stack.isEmpty() && Precedence(c) <= Precedence(stack.peek())) {
+                while (!stack.isEmpty() && precedence(c) <= precedence(stack.peek())) {
                     postFixExpression.append(stack.pop());
                     postFixExpression.append(' ');
                 }
@@ -35,7 +35,7 @@ public class Parsing {
         return postFixExpression.toString();
     }
 
-    static int Precedence(char ch) {
+    static int precedence(char ch) {
         switch (ch) {
             case '+':
             case '-':
